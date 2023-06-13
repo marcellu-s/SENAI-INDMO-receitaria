@@ -1,6 +1,7 @@
 # App Mobile de receitas
 Disciplina: Interface para Dispositivos Móveis.<br>
 Proposta: Criar um aplicativo de receitas, onde é possível ver os ingredientes e modo de preparo.<br>
+
 Tecnologia utilizada: React Native
 
 Integrantes do projeto:
