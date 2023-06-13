@@ -2,7 +2,7 @@
 Disciplina: Interface para Dispositivos Móveis.<br>
 Proposta: Criar um aplicativo de receitas, onde é possível ver os ingredientes e modo de preparo.<br>
 
-Tecnologia utilizada: React Native
+Tecnologia utilizada: <strong>React Native</strong>
 
 Integrantes do projeto:
 <a href="https://github.com/marcellu-s">Marcelo Costa</a> |
