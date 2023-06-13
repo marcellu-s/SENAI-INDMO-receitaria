@@ -1,13 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, ScrollView } from 'react-native';
 import HomeScreen from './src/views/Home';
+import RecipeScreen from './src/views/Recipe';
 
 export default function App() {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <StatusBar style="auto" />
-      <HomeScreen />
-    </View>
+      <RecipeScreen />
+    </ScrollView>
   );
 }
 
