@@ -92,9 +92,11 @@ const receita4 = new Receita(
     ['Pavê', 'Doces', 'Sobremesa']
 );
 
-module.exports = {
+const receitas = [
     receita1,
     receita2,
     receita3,
     receita4
-};
+];
+
+export default receitas;
