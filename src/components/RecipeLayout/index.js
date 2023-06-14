@@ -13,11 +13,9 @@ const RecipeLayout = () => {
         <View>
             <View>
                 <View style={styles.navbar}> 
-                    <Pressable onPress={() => navigation.navigate('Home')}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                             <Ionicons name="arrow-back-circle-outline" size={32} color="black" />   
                         </TouchableOpacity>
-                    </Pressable>
                     <TouchableOpacity>
                         <AntDesign name="hearto" size={28} color="#FE8A07" />
                     </TouchableOpacity>
