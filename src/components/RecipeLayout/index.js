@@ -14,9 +14,13 @@ const RecipeLayout = () => {
             <View>
                 <View style={styles.navbar}> 
                     <Pressable onPress={() => navigation.navigate('Home')}>
-                        <Ionicons name="arrow-back-circle-outline" size={32} color="black" />   
+                        <TouchableOpacity>
+                            <Ionicons name="arrow-back-circle-outline" size={32} color="black" />   
+                        </TouchableOpacity>
                     </Pressable>
-                    <AntDesign name="hearto" size={28} color="#FE8A07" />
+                    <TouchableOpacity>
+                        <AntDesign name="hearto" size={28} color="#FE8A07" />
+                    </TouchableOpacity>
                 </View>
                 <Text style={{fontSize: 32, fontFamily: 'Poppins-Bold', textAlign: 'center', marginTop: 21}}>{recipe.title}</Text>
                 <View style={styles.imageContainer}>
