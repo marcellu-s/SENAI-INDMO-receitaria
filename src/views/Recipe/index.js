@@ -1,4 +1,5 @@
-import { StyleSheet, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import { useCallback } from 'react';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
@@ -25,15 +26,19 @@ const RecipeScreen = () => {
     }
 
     return (
-        <View style={styles.RecipeScreenContainer}>
-            <RecipeLayout />
-        </View>
+        <ScrollView>
+            <SafeAreaView style={styles.RecipeScreenContainer}>
+                <StatusBar style="auto" />
+                <RecipeLayout />
+            </SafeAreaView>
+        </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
     RecipeScreenContainer: {
         padding: 32,
+        backgroundColor: '#fff',
     },
 });
 

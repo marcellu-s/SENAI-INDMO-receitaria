@@ -1,18 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, ScrollView } from 'react-native';
-import HomeScreen from './src/views/Home';
+import Routes from './src/routes';
 
 export default function App() {
   return (
-    <ScrollView style={styles.container}>
-      <StatusBar style="auto" />
-      <HomeScreen />
-    </ScrollView>
+      <Routes />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
-  },
-});

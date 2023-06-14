@@ -1,7 +1,8 @@
+import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, SafeAreaView, ScrollView, View } from 'react-native';
 import HeaderApp from '../../components/Header';
 import RecipesDisplay from '../../components/RecipesDisplay';
 import Navbar from '../../components/Navbar';
@@ -26,9 +27,14 @@ const HomeScreen = () => {
     }
 
     return (
-        <View style={styles.homeScreenContainer}>
-            <HeaderApp />
-            <RecipesDisplay />
+        <View>
+            <ScrollView>
+                <SafeAreaView style={styles.homeScreenContainer}>
+                    <StatusBar style="auto" />
+                    <HeaderApp />
+                    <RecipesDisplay />
+                </SafeAreaView>
+            </ScrollView>
             <Navbar />
         </View>
     );
@@ -37,6 +43,7 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
     homeScreenContainer: {
         padding: 32,
+        backgroundColor: '#fff',
     },
 });
 

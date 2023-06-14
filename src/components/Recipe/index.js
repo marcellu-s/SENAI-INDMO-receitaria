@@ -1,27 +1,32 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import { Feather  } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 const Recipe = () => {
 
+    const navigation = useNavigation();
+
     return (
-        <View style={styles.recipe}>
-            <Text style={styles.recipeTitle}>Bolo de Aipim</Text>
+        <Pressable onPress={() => navigation.navigate('Recipe')}>
+            <View style={styles.recipe}>
+                <Text style={styles.recipeTitle}>Bolo de Aipim</Text>
 
-            <View style={styles.recipeStars}>
-                <Feather name="star" size={12} color="#FFCF5C" />
-                <Feather name="star" size={12} color="#FFCF5C" />
-                <Feather name="star" size={12} color="#FFCF5C" />
-                <Feather name="star" size={12} color="#FFCF5C" />
-                <Feather name="star" size={12} color="#FFCF5C" />
-                <Text>4.5</Text>
+                <View style={styles.recipeStars}>
+                    <Feather name="star" size={12} color="#FFCF5C" />
+                    <Feather name="star" size={12} color="#FFCF5C" />
+                    <Feather name="star" size={12} color="#FFCF5C" />
+                    <Feather name="star" size={12} color="#FFCF5C" />
+                    <Feather name="star" size={12} color="#FFCF5C" />
+                    <Text>4.5</Text>
+                </View>
+                
+                <Text style={styles.recipeAbout}>
+                    A receita de bolo de aipim simples é um clássico da culinária brasileira que combina muito bem com aquele cafezinho da tarde. Descubra como fazer bolo de aipim!
+                </Text>
+
+                <Image source={require('../../assets/images/Bolo_de_aipim_com_coco.webp')} style={styles.recipeImage} />
             </View>
-            
-            <Text style={styles.recipeAbout}>
-                A receita de bolo de aipim simples é um clássico da culinária brasileira que combina muito bem com aquele cafezinho da tarde. Descubra como fazer bolo de aipim!
-            </Text>
-
-            <Image source={require('../../assets/images/Bolo_de_aipim_com_coco.webp')} style={styles.recipeImage} />
-        </View>
+        </Pressable>
     );
 };
 
@@ -32,7 +37,6 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#999',
         borderRadius: 16,
-
         position: 'relative',
     },
 

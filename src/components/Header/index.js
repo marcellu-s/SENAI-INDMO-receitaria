@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { Ionicons, Feather, AntDesign  } from '@expo/vector-icons';
 
 const HeaderApp = () => {
@@ -6,22 +6,34 @@ const HeaderApp = () => {
     return (
         <View style={styles.headerContainer}>
             <View style={styles.header}>
-                <Feather name="menu" size={32} color="#333" />
+                <TouchableOpacity>
+                    <Feather name="menu" size={32} color="#333" />
+                </TouchableOpacity>
                 <Text style={styles.title}>Bem-vindo</Text>
-                <Ionicons name="person-circle" size={32} color="#333" />
+                <TouchableOpacity>
+                    <Ionicons name="person-circle" size={32} color="#333" />
+                </TouchableOpacity>
             </View>
 
             <Text style={styles.headlineText}>Encontre sua receita de comida favorita!</Text>
 
             <View style={styles.inputSearch}>
                 <TextInput style={styles.input} placeholder={'Procure uma receita'} placeholderTextColor={'#fff'} />
-                <AntDesign style={styles.searchIcon} name="search1" size={24} color="white" />
+                <TouchableOpacity style={styles.searchIcon}>
+                    <AntDesign name="search1" size={24} color="white" />
+                </TouchableOpacity>
             </View>
 
             <View style={styles.categoriesWrapper}>
-                <Text style={styles.categorieDestac}>Popular</Text>
-                <Text style={styles.categorie}>Novas receitas</Text>
-                <Text style={styles.categorie}>Todas</Text>
+                <TouchableOpacity>
+                    <Text style={styles.categorieDestac}>Popular</Text>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Text style={styles.categorie}>Novas receitas</Text>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Text style={styles.categorie}>Todas</Text>
+                </TouchableOpacity>
             </View>
 
         </View>
