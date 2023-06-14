@@ -1,11 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, Pressable, TouchableOpacity } from 'react-native';
 import { Ionicons, AntDesign, FontAwesome, Entypo, MaterialCommunityIcons, Feather } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 const RecipeLayout = () => {
 
     const navigation = useNavigation();
+
+    const recipe = useRoute().params;
     
     return (
         <View>
@@ -16,14 +18,14 @@ const RecipeLayout = () => {
                     </Pressable>
                     <AntDesign name="hearto" size={28} color="#FE8A07" />
                 </View>
-                <Text style={{fontSize: 32, fontFamily: 'Poppins-Bold', textAlign: 'center', marginTop: 21}}>Bolo De Aipim</Text>
+                <Text style={{fontSize: 32, fontFamily: 'Poppins-Bold', textAlign: 'center', marginTop: 21}}>{recipe.title}</Text>
                 <View style={styles.imageContainer}>
-                    <Image source={require('../../assets/images/Bolo-de-Aipim.jpg')} style={styles.image} resizeMode="cover" />
+                    <Image source={{uri: recipe.image}} style={styles.image} resizeMode="cover" />
                 </View>
                 
                 <View style={styles.user}>
                     <FontAwesome style={styles.userby} name="user-circle-o" size={32} color="#717171" />
-                    <Text style={styles.usertext}>Por: Manoel Gomes</Text>
+                    <Text style={styles.usertext}>Por: {recipe.author}</Text>
                 </View>
                 <View style={styles.recipedetails}>
                     <View style={styles.details}>
@@ -33,7 +35,7 @@ const RecipeLayout = () => {
                         <View style={styles.time}>
                             <Ionicons name="ios-alarm-outline" size={24} color="#333" />
                             <Text style={styles.textdetails}>
-                                1h
+                                {recipe.duration}
                             </Text>
                         </View>
                     </View>
@@ -43,7 +45,7 @@ const RecipeLayout = () => {
                         </Text>
 
                         <Text style={styles.textdetails}>
-                            15 Porções
+                            {recipe.portion}
                         </Text>
                     </View>
                     <View style={styles.details}>
@@ -51,8 +53,8 @@ const RecipeLayout = () => {
                             Dificuldade
                         </Text>
 
-                        <Text style={styles.difficult}>
-                            Médio
+                        <Text style={styles.textdetails}>
+                            {recipe.difficult}
                         </Text>
                     </View>
                 </View>
@@ -62,56 +64,32 @@ const RecipeLayout = () => {
                     <Text style={styles.title}>Ingredientes</Text>
                     <View style={styles.ingredientsList}>
 
-                        <View style={styles.ingredientitem}>
-                            <Entypo name="check" size={20} color="black" />
-                            <Text style={styles.text}>1,5 kg de aipim (mandioca) ralado</Text>
-                        </View>
-
-                        <View style={styles.ingredientitem}>
-                            <Entypo name="check" size={20} color="black" />
-                            <Text style={styles.text}>3 xícaras de leite</Text>
-                        </View>
-
-                        <View style={styles.ingredientitem}>
-                            <Entypo name="check" size={20} color="black" />
-                            <Text style={styles.text}>2 colheres (sopa) de margarina ou manteiga</Text>
-                        </View>
-                        
-                        <View style={styles.ingredientitem}>
-                            <Entypo name="check" size={20} color="black" />
-                            <Text style={styles.text}>1 coco pequeno ralado (ou 100 g de coco ralado industrializado)</Text>
-                        </View>
-
-                        <View style={styles.ingredientitem}>
-                            <Entypo name="check" size={20} color="black" />
-                            <Text style={styles.text}>3 ovos inteiros</Text>
-                        </View>
-
-                        <View style={styles.ingredientitem}>
-                            <Entypo name="check" size={20} color="black" />
-                            <Text style={styles.text}>3 xícaras de açúcar</Text>
-                        </View>
+                        {
+                            recipe.ingredients.map((item, index) => {
+                                return (
+                                    <View style={styles.ingredientitem} key={index}>
+                                        <Entypo name="check" size={20} color="black" />
+                                        <Text style={styles.text}>{item}</Text>
+                                    </View>
+                                )
+                            })
+                        }
                     </View>
                 </View>
                 <View style={styles.prepare}>
                     <Text style={styles.title}>Modo de Preparo</Text>
                     <View style={{gap: 24, marginBottom: 32}}>
-                        <View style={styles.prepareItem}>
-                            <MaterialCommunityIcons name="numeric-1-circle-outline" size={24} color="black" />
-                            <Text style={styles.text}>Misture todos os ingredientes em uma bacia grande com a ajuda de um fouet ou uma colher de pau.</Text>
-                        </View>
-                        <View style={styles.prepareItem}>
-                            <MaterialCommunityIcons name="numeric-2-circle-outline" size={24} color="black" />
-                            <Text style={styles.text}>Leve para assar em forma retangular untada (utilize manteiga para untar e uma folha de papel-toalha para te ajudar) e enfarinhada por, aproximadamente, 45 minutos, em forno previamente aquecido a 180º C.</Text>
-                        </View>
-                        <View style={styles.prepareItem}>
-                            <MaterialCommunityIcons name="numeric-3-circle-outline" size={24} color="black" />
-                            <Text style={styles.text}>Fica cremoso por dentro e com a casquinha crocante.</Text>
-                        </View>
-                        <View style={styles.prepareItem}>
-                            <MaterialCommunityIcons name="numeric-4-circle-outline" size={24} color="black" />
-                            <Text style={styles.text}>É delicioso!</Text>
-                        </View>
+
+                        {
+                            recipe.methodPreparation.map((item, index) => {
+                                return(
+                                    <View style={styles.prepareItem} key={index+1}>
+                                        <MaterialCommunityIcons name={`numeric-${index+1}-circle-outline`} size={24} color="black" />
+                                        <Text style={styles.text}>{item}</Text>
+                                    </View>
+                                )
+                            })
+                        }
                     </View>
                 </View>
                 <View style={{marginVertical: 32, backgroundColor: '#333', padding: 16, borderRadius: 16}}>
@@ -126,22 +104,24 @@ const RecipeLayout = () => {
                 </View>
                 <View style={{borderWidth: 1, borderColor: '#999', padding: 32, borderRadius: 16, marginBottom: 32}}>
                     <Text style={{fontFamily: 'Poppins-Bold', fontSize: 24, color:'#333', marginBottom: 16, textAlign: 'center',}}>Informações adicionais</Text>
-                    <Text style={{fontFamily: 'Poppins-Light', fontSize: 16, color:'#333', marginBottom: 32, textAlign: 'center',}}>Dicas para fazer uma lasanha de carne moída perfeita</Text>
+                    <Text style={{fontFamily: 'Poppins-Light', fontSize: 16, color:'#333', marginBottom: 32, textAlign: 'center',}}>Dicas para fazer uma receita de {recipe.title}</Text>
                     <Text style={{fontFamily: 'Poppins-Regular', fontSize: 16, color:'#333', textAlign: 'justify', }}>
-                        A receita de lasanha de carne moída, também conhecida como lasanha à bolonhesa, é um clássico! Aliás, você sabia que a lasanha é um prato superfamoso no mundo inteiro? Ela pode ter vários molhos e recheios. Seu nome deriva da sua montagem em camadas: lasanha significa "pote de cozinhar".
-                        Receita de lasanha nunca tem certo ou errado, cada um tem a sua, normalmente passada de geração em geração, certo? Mas se você ainda tem dúvidas sobre como fazer lasanha de carne moída ou de qualquer outro sabor, confira esta matéria do blog do TudoGostoso para saber tudo: como congelar lasanha, como fazer massa de lasanha e mais!
-                        E quem resiste a uma boa lasanha à bolonhesa? Impossível não ficar com água na boca! E se for a receita de lasanha simples é melhor ainda. É óbvio que no TudoGostoso você encontra muitos truques e dicas para esse prato que é sucesso nos almoços de família, dentre eles temos: como fazer a lasanha perfeita e escolher os melhores ingredientes para lasanha.
+                        {recipe.additionalInformation}
                     </Text>
                 </View>
                 <View>
                     <Text style={{fontFamily: 'Poppins-Bold', fontSize: 16, color: '#333'}}>Categorias relacionadas</Text>
                     <View style={styles.categoriesWrapper}> 
-                        <TouchableOpacity style={styles.categorie}>
-                            <Text style={styles.categorieText}>Massas</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.categorie}>
-                            <Text style={styles.categorieText}>Massas</Text>
-                        </TouchableOpacity>
+
+                        {
+                            recipe.categories.map((item, index) => {
+                                return(
+                                    <TouchableOpacity style={styles.categorie} key={index}>
+                                        <Text style={styles.categorieText}>{item}</Text>
+                                    </TouchableOpacity>
+                                )
+                            })
+                        }
                     </View>
                 </View>
             </View>
@@ -206,11 +186,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Poppins-Bold',
         fontSize:15,
         color:'#333'
-    },
-    difficult:{
-        color:'#FE8A07',
-        fontSize:14,
-        fontFamily:'Poppins-Bold'
     },
 
     textdetails:{

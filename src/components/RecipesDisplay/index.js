@@ -1,13 +1,12 @@
 import { StyleSheet, View  } from 'react-native';
+import receita1 from '../../data';
 import Recipe from '../Recipe';
 
 const RecipesDisplay = () => {
 
     return (
         <View style={styles.recipeWrapper}>
-            <Recipe></Recipe>
-            <Recipe></Recipe>
-            <Recipe></Recipe>
+            <Recipe props={receita1}></Recipe>
         </View>
     );
 };

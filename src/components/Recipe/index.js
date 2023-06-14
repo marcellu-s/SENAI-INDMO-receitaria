@@ -2,14 +2,14 @@ import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import { Feather  } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-const Recipe = () => {
+const Recipe = ({ props }) => {
 
     const navigation = useNavigation();
 
     return (
-        <Pressable onPress={() => navigation.navigate('Recipe')}>
+        <Pressable onPress={() => navigation.navigate('Recipe', props)}>
             <View style={styles.recipe}>
-                <Text style={styles.recipeTitle}>Bolo de Aipim</Text>
+                <Text style={styles.recipeTitle}>{props.title}</Text>
 
                 <View style={styles.recipeStars}>
                     <Feather name="star" size={12} color="#FFCF5C" />
@@ -20,11 +20,9 @@ const Recipe = () => {
                     <Text>4.5</Text>
                 </View>
                 
-                <Text style={styles.recipeAbout}>
-                    A receita de bolo de aipim simples é um clássico da culinária brasileira que combina muito bem com aquele cafezinho da tarde. Descubra como fazer bolo de aipim!
-                </Text>
+                <Text style={styles.recipeAbout}>{props.about}</Text>
 
-                <Image source={require('../../assets/images/Bolo_de_aipim_com_coco.webp')} style={styles.recipeImage} />
+                <Image source={{uri: props.image}} style={styles.recipeImage} />
             </View>
         </Pressable>
     );
