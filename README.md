@@ -1,4 +1,4 @@
-# App Mobile de receitas
+# App Mobile de receitas (Versão 1)
 Disciplina: Interface para Dispositivos Móveis.<br>
 Proposta: Criar um aplicativo de receitas, onde é possível ver os ingredientes e modo de preparo.<br>
 
